@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
 
-    background-color: lighten($color-text-dark, 85);
+    background-color: fade-out($color-text-dark, 0.9);
 
     @media (min-width: $screen-md) {
       flex-direction: row;
@@ -87,5 +87,11 @@
     background-color: lighten($color-text-dark, 85);
 
     box-shadow: 0 .2rem 1rem $color-shadow;
+  }
+
+  .menu__item {
+    @media (min-width: $screen-md) {
+      min-width: 10rem;
+    }
   }
 }
