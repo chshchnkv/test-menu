@@ -1,0 +1,73 @@
+.main-navigation {
+
+  &__menu {
+    @include list-init;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: lighten($color-text-dark, 85);
+
+    @media (min-width: $screen-md) {
+      flex-direction: row;
+    }
+
+    a {
+      display: block;
+      padding: 1rem;
+
+      color: $color-text-dark;
+      text-decoration: none;
+    }
+
+    &-item {
+      position: relative;
+      cursor: pointer;
+
+      @include transition;
+
+      font-size: 1.5rem;
+      text-transform: lowercase;
+
+      &:hover {
+        background-color: lighten($color-text-dark, 75);
+      }
+      &:active {
+        & > a {
+          color: fade-out($color-text-dark, 0.5);
+        }
+      }
+
+      &--has-child {
+        > a:after {
+          content: '\25BE';
+          line-height: 1;
+          margin-left: 0.3rem;
+        }
+      }
+    }
+
+    & > &-item {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.sub-menu {
+  @include list-init;
+  display: none;
+
+  font-weight: normal;
+
+  @media (min-width: $screen-md) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+
+    background-color: lighten($color-text-dark, 85);
+
+    box-shadow: .5rem .5rem .5rem -.25rem fade-out($color-text-dark, 0.45);
+  }
+}
