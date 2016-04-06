@@ -7,6 +7,5 @@ $.ajax({
   url: '/js/menu-content.json',
   dataType: 'json'
 }).done((data) => {
-  console.log(data);
   menu.addItem({name: 'Test', url: '#'}, data);
 });

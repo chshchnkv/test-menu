@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   devServer: {
@@ -24,5 +25,16 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel-loader'}
     ]
-  }
+  },
+
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      mangle: {
+        except: ['$super', '$', 'exports', 'require']
+      }
+    })
+  ]
 };

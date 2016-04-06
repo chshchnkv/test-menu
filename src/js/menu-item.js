@@ -2,6 +2,10 @@ import $ from 'jquery';
 import Menu from 'menu';
 import getElementFromTemplate from 'templates';
 
+/**
+ * Класс пункта меню
+ * @param {JQuery} [element] элемент для пункта меню
+ */
 function MenuItem(element) {
   this._onClick = this._onClick.bind(this);
 
@@ -16,6 +20,12 @@ function MenuItem(element) {
   }
 }
 
+MenuItem.prototype.subMenu = null;
+
+/**
+ * Инициализация компонента
+ * @private
+ */
 MenuItem.prototype._init = function() {
   this._linkElement = this.element.children('a');
   this.element.on('click', this._onClick);
@@ -25,6 +35,12 @@ MenuItem.prototype._init = function() {
   }
 };
 
+/**
+ * Генерирует элемент для пункта меню из шаблона
+ * @param {object} itemData     данные добавляемого элемента
+ * @param {Array} [subItemsData] элементы подменю
+ * @returns {JQuery} элемент пункта меню
+ */
 MenuItem.prototype.render = function(itemData, subItemsData) {
   this.element = $(getElementFromTemplate('template-menu-item'));
 
@@ -44,17 +60,46 @@ MenuItem.prototype.render = function(itemData, subItemsData) {
   return this.element;
 };
 
-MenuItem.prototype.subMenu = null;
-
-MenuItem.prototype._onClick = function(event) {
+/**
+ * Удаляет пункт меню
+ */
+MenuItem.prototype.remove = function() {
+  this._onClick = null;
   if (this.subMenu) {
-    event.preventDefault();
-    this.subMenu.toggle();
+    this.subMenu.remove();
   }
 };
 
-MenuItem.prototype.hideSubMenu = function() {
+/**
+ * Обработчик щелчка по пункту меню. Открывает/скрывает подменю, если есть.
+ * @private
+ */
+MenuItem.prototype._onClick = function() {
   if (this.subMenu) {
+    if (this.subMenu.isOpened()) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+};
+
+/**
+ * Открывает подменю пункта
+ */
+MenuItem.prototype.open = function() {
+  if (this.subMenu) {
+    this.element.addClass('main-navigation__menu-item--opened');
+    this.subMenu.show();
+  }
+};
+
+/**
+ * Скрывает подменю пункта
+ */
+MenuItem.prototype.close = function() {
+  if (this.subMenu) {
+    this.element.removeClass('main-navigation__menu-item--opened');
     this.subMenu.hide();
   }
 };

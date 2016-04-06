@@ -1,6 +1,8 @@
 $screen-xs: 320px;
 $screen-md: 600px;
+$screen-md-max: ($screen-md - 1);
 $screen-lg: 1024px;
+$screen-lg-max: ($screen-lg - 1);
 
 $fonts-main: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 $font-base: 10px;

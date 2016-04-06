@@ -30,7 +30,7 @@
       text-transform: lowercase;
 
       &:hover {
-        background-color: lighten($color-text-dark, 75);
+        background-color: fade-out($color-text-dark, 0.85);
       }
       &:active {
         & > a {
@@ -40,9 +40,24 @@
 
       &--has-child {
         > a:after {
+          display: inline-block;
+          vertical-align: top;
+          @include transition;
           content: '\25BE';
           line-height: 1;
           margin-left: 0.3rem;
+        }
+      }
+
+      &--opened {
+        background-color: fade-out($color-text-dark, 0.85);
+
+        @media (max-width: $screen-md-max) {
+          box-shadow: inset 0 0 .5rem -.2rem $color-shadow;
+        }
+
+        > a:after {
+          transform: rotateZ(180deg);
         }
       }
     }
@@ -68,6 +83,6 @@
 
     background-color: lighten($color-text-dark, 85);
 
-    box-shadow: .5rem .5rem .5rem -.25rem fade-out($color-text-dark, 0.45);
+    box-shadow: 0 .2rem 1rem $color-shadow;
   }
 }
