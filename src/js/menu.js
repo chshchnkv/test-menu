@@ -12,7 +12,7 @@ function Menu(menuElement) {
   if (menuElement) {
     this.element = menuElement;
 
-    var itemsElements = this.element.children('.main-navigation__menu-item');
+    var itemsElements = this.element.children('.menu__item');
 
     itemsElements.each((n, e) => {
       this.items.push(new MenuItem(e));

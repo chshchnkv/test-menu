@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import Menu from 'menu';
 
-var menu = new Menu($('.main-navigation__menu'));
+var menu = new Menu($('.menu'));
 
 $.ajax({
   url: '/js/menu-content.json',

@@ -31,7 +31,7 @@ MenuItem.prototype._init = function() {
   this.element.on('click', this._onClick);
 
   if (this.subMenu) {
-    this.element.addClass('main-navigation__menu-item--has-child');
+    this.element.addClass('menu__item--has-child');
   }
 };
 
@@ -89,7 +89,7 @@ MenuItem.prototype._onClick = function() {
  */
 MenuItem.prototype.open = function() {
   if (this.subMenu) {
-    this.element.addClass('main-navigation__menu-item--opened');
+    this.element.addClass('menu__item--opened');
     this.subMenu.show();
   }
 };
@@ -99,7 +99,7 @@ MenuItem.prototype.open = function() {
  */
 MenuItem.prototype.close = function() {
   if (this.subMenu) {
-    this.element.removeClass('main-navigation__menu-item--opened');
+    this.element.removeClass('menu__item--opened');
     this.subMenu.hide();
   }
 };
